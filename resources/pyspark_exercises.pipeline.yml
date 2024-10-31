@@ -1,0 +1,14 @@
+# The main pipeline for pyspark_exercises
+resources:
+  pipelines:
+    pyspark_exercises_pipeline:
+      name: pyspark_exercises_pipeline
+      ## Specify the 'catalog' field to configure this pipeline to make use of Unity Catalog:
+      # catalog: catalog_name
+      target: pyspark_exercises_${bundle.environment}
+      libraries:
+        - notebook:
+            path: ../src/dlt_pipeline.ipynb
+
+      configuration:
+        bundle.sourcePath: ${workspace.file_path}/src
